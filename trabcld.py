@@ -118,6 +118,17 @@ def copiar_topo():
     for i in range(0, len(topoTV) - 2):
         copia_topo.append(topoTV[i])
 
+def f_retirar(lista,*args):
+    for i in range(0,len(entrada_saida)):
+        if copia_topo[i] not in entrada_saida:
+            resultado = i
+            print(resultado)
+            copia_topo.pop(i)
+            print(copia_topo)
+            return resultado
+
+
+
 
 def modificar_copia_topo():
     for i in range(0, num_gates):
@@ -131,19 +142,23 @@ def modificar_copia_topo():
     print(copia_topo)
 
 def matriz_final():
-    k=0
-    for i in range( 0, len(copia_topo)):
-      linha=[]
-      if copia_topo[i] in entrada_saida:
-        linha.append(i)
-    for i in range(0,len(topoTV)):
-        add = []
-        if i in linha:
-          for j in range(0, num_linhas):
-            valor= tabela[j][i]
-            add.append(valor)
-    tabela_final.append(add)
-
+  for i in range(0, num_linhas):
+      tabela_final.append([])
+      for j in range(0, num_colunas):
+          tabela_final[i].append('#')
+  for i in range(0,num_linhas):
+      for j in range(0,num_colunas):
+          tabela_final[i][j]=tabela[i][j]
+  k=0
+  valor_copia=len(copia_topo)
+  lim= valor_copia - len(entrada_saida)
+  while k < lim:
+      retirar = f_retirar(copia_topo)
+      for i in range(0,num_linhas):
+        for j in range(0,len(copia_topo)):
+          if j == retirar:
+              tabela_final[i].pop(retirar)
+      k=k+1
 
 
 def enviar_dados():
@@ -196,8 +211,8 @@ def enviar_dados():
 
 
 def mostrar_matriz():
-  for i in range(0, num_linhas):
-    print(tabela_final[i])
+    for i in range(0,num_linhas):
+        print(tabela_final[i])
 
 
 cria_topoTV()
