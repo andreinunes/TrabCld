@@ -1,0 +1,8 @@
+entrada,3,A,B,Cin
+saida,2,S,Cout
+gate,5,G1,G2,G3,G4,G5
+G1,xor,y1,A,B
+G2,xor,S,y1,Cin
+G3,and,y3,y1,Cin
+G4,and,y4,B,A
+G5,or,Cout,y3,y4
