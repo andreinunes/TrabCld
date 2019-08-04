@@ -136,7 +136,13 @@ def matriz_final():
       linha=[]
       if copia_topo[i] in entrada_saida:
         linha.append(i)
-    for j in range(0,num_linhas):
+    for i in range(0,len(topoTV)):
+        add = []
+        if i in linha:
+          for j in range(0, num_linhas):
+            valor= tabela[j][i]
+            add.append(valor)
+    tabela_final.append(add)
 
 
 
